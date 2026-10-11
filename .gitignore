@@ -1,0 +1,11 @@
+source/
+output/
+*.tmp
+*.log
+__pycache__/
+.pytest_cache/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
