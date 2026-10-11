@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/ckweb1/esp32-navigation-data/main/schema/tile.schema.json",
+  "title": "ESP32 navigation data tile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "tile",
+    "records"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "tile": {
+      "type": "string",
+      "pattern": "^[NS][0-9]{2}_[EW][0-9]{3}$"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ident",
+          "name",
+          "type",
+          "frequencyKhz",
+          "latitude",
+          "longitude"
+        ],
+        "properties": {
+          "ident": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 8
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "enum": [
+              "NDB",
+              "NDB-DME",
+              "VOR",
+              "VOR-DME",
+              "VORTAC"
+            ]
+          },
+          "frequencyKhz": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "latitude": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "longitude": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "elevationFt": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "slavedVariationDeg": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "magneticVariationDeg": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

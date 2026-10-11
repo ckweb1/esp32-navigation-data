@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/ckweb1/esp32-navigation-data/main/schema/manifest.schema.json",
+  "title": "ESP32 navigation dataset manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "datasetVersion",
+    "generatedAt",
+    "source",
+    "tileSizeDegrees",
+    "recordFormat",
+    "baseUrl",
+    "full",
+    "tiles"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "datasetVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "name",
+        "url",
+        "license",
+        "sha256",
+        "countryFilter"
+      ]
+    },
+    "tileSizeDegrees": {
+      "const": 1
+    },
+    "recordFormat": {
+      "const": "json-v1"
+    },
+    "baseUrl": {
+      "type": "string",
+      "format": "uri"
+    },
+    "full": {
+      "$ref": "#/$defs/file"
+    },
+    "tiles": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/file"
+      }
+    }
+  },
+  "$defs": {
+    "file": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "size",
+        "records"
+      ],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "records": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}
