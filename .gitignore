@@ -9,3 +9,11 @@ __pycache__/
 .DS_Store
 Thumbs.db
 Desktop.ini
+
+
+# Private agent customization
+.github/copilot-instructions.md
+.github/instructions/
+.github/prompts/
+.github/agents/
+.github/skills/
